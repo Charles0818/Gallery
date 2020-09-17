@@ -27,8 +27,7 @@ export default class App extends React.Component {
           <Provider store={store}>
             <PersistGate
               persistor={persistor}
-              loading={<ActivityIndicator animating color={colors.color1} />}
-            >
+              loading={<ActivityIndicator animating color={colors.color1} />}>
               <NavigationRoutes />
             </PersistGate>
           </Provider>
@@ -83,15 +82,13 @@ export const NavigationRoutes: React.FC = (): JSX.Element | null => {
       theme={appTheme}
       onStateChange={(state: NavigationState | undefined): Promise<void> =>
         AsyncStorage.setItem('persistedRoute', JSON.stringify(state))
-      }
-    >
+      }>
       <Stack.Navigator
         initialRouteName="Albums"
         screenOptions={{
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
           // header
-        }}
-      >
+        }}>
         <Stack.Screen
           name="Albums"
           component={Albums}
@@ -103,7 +100,14 @@ export const NavigationRoutes: React.FC = (): JSX.Element | null => {
         />
         <Stack.Screen name="Album" component={Album} />
         <Stack.Screen name="VideoPlayer" component={VideoPlayer} />
-        <Stack.Screen name="PhotoViewer" component={PhotoViewer} />
+        <Stack.Screen
+          name="PhotoViewer"
+          component={PhotoViewer}
+          options={{
+            cardStyleInterpolator: CardStyleInterpolators.forScaleFromCenterAndroid,
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

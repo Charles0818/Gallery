@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useNavigation, useTheme } from '@react-navigation/native';
-import { colors, styles } from '../../../../styles';
+import { styles } from '../../../../styles';
 import {
   Button,
   ICountAssets,
@@ -33,21 +33,22 @@ export const Header: React.FC<HeaderType> = ({
   return (
     <ScreenHeaderTheme style={[styles.flexCenter, styles.padding_sm]}>
       <Section
-        style={[styles.row, styles.alignItems_center, styles.justifyContent_between]}
-      >
+        style={[
+          styles.row,
+          styles.alignItems_center,
+          styles.justifyContent_between,
+        ]}>
         <View
           style={[
             {
               flex: 5,
             },
-          ]}
-        >
+          ]}>
           {hasSelection ? (
             <View style={[styles.row, styles.alignItems_center]}>
               <Button
                 onPress={goBack}
-                style={[styles.marginRight_sm, styles.buttonIcon]}
-              >
+                style={[styles.marginRight_sm, styles.buttonIcon]}>
                 <Icon name="keyboard-arrow-left" size={30} color={text} />
               </Button>
               <ThemeText style={[styles.font_lg, styles.fontWeight_700]}>
@@ -60,13 +61,11 @@ export const Header: React.FC<HeaderType> = ({
                 styles.row,
                 styles.alignItems_center,
                 styles.justifyContent_between,
-              ]}
-            >
+              ]}>
               <View style={[styles.row, styles.alignItems_center]}>
                 <Button
                   onPress={emptySelectedAssets}
-                  style={[styles.marginRight_md]}
-                >
+                  style={[styles.marginRight_md]}>
                   <FontAwesome name="times" size={20} />
                 </Button>
                 <Text
@@ -75,8 +74,7 @@ export const Header: React.FC<HeaderType> = ({
                       color: text,
                     },
                     styles.font_lg,
-                  ]}
-                >
+                  ]}>
                   {countAssets()}
                 </Text>
               </View>
@@ -97,8 +95,7 @@ export const Header: React.FC<HeaderType> = ({
               flex: 1,
             },
             styles.alignItems_end,
-          ]}
-        >
+          ]}>
           <Button style={[styles.buttonIcon]}>
             <Ionicon name="ellipsis-vertical" color={text} size={20} />
           </Button>

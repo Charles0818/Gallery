@@ -2,13 +2,16 @@ import React, { useCallback, useLayoutEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
-import { PhotoIdentifiersPage } from '@react-native-community/cameraroll';
-import { Screen, Section } from '../components';
-import { AssetCard, useSelectedAssets } from '../../components';
-import { AlbumInfo, Header } from './components';
-import { colors, styles } from '../../styles';
+import {
+  PhotoIdentifiersPage,
+  PhotoIdentifier,
+} from '@react-native-community/cameraroll';
+import { Screen } from '../components';
+import { useSelectedAssets } from '../../components';
+import { AlbumInfo, Header, RenderAssetsByMonth } from './components';
+import { styles } from '../../styles';
 import { RootStackProp } from '../types';
-import { AppState, actions, quantifier } from '../../helpers';
+import { AppState, actions, sortAssetsByMonth } from '../../helpers';
 
 const { getAssetsRequest } = actions;
 type AlbumType = RootStackProp<'Album'> & {
@@ -31,6 +34,7 @@ const Album: React.FC<AlbumType> = ({
   const [album] = useState<PhotoIdentifiersPage | undefined>(
     getAlbum(params.albumName),
   );
+  console.log('params.albumName', params.albumName);
   if (!album) return null;
   const {
     page_info: { has_next_page, end_cursor },
@@ -51,30 +55,22 @@ const Album: React.FC<AlbumType> = ({
   const fetchAssets = useCallback((): void => {
     has_next_page ? getAssetsRequest(params.albumName, end_cursor) : null;
   }, [has_next_page, end_cursor]);
+  const sortAssets = useCallback((): [string, PhotoIdentifier[]][] => {
+    return sortAssetsByMonth(edges);
+  }, [edges]);
   return (
     <Screen>
       <FlatList
-        data={edges}
+        data={sortAssets()}
         ListHeaderComponent={(): JSX.Element => (
           <AlbumInfo albumName={params.albumName} />
         )}
-        renderItem={({ item, index, separators }) => (
-          <AssetCard
-            asset={item}
-            key={index}
-            {...assetFunctions}
-            hasSelection={hasSelection}
-          />
+        renderItem={({ item }) => (
+          <RenderAssetsByMonth groupedMonth={item} {...assetFunctions} />
         )}
-        keyExtractor={(item, index) => item.node.image.uri}
-        numColumns={4}
+        keyExtractor={(item, index) => item[0]}
+        numColumns={1}
         showsVerticalScrollIndicator
-        columnWrapperStyle={[
-          {
-            justifyContent: 'flex-start',
-          },
-          styles.paddingHorizontal_sm,
-        ]}
         initialNumToRender={50}
         onEndReachedThreshold={0.75}
         onEndReached={fetchAssets}

@@ -42,8 +42,7 @@ export const AlbumCard: React.FC<AlbumCardType> = ({
         mediumStyle.container,
         styles.marginBottom_xsm,
         styles.marginRight_xsm,
-      ]}
-    >
+      ]}>
       <Button
         onPress={(): void =>
           hasSelection
@@ -54,8 +53,7 @@ export const AlbumCard: React.FC<AlbumCardType> = ({
                 albumName: title,
               })
         }
-        onLongPress={() => (selected ? removeAlbum(title) : addAlbum(album))}
-      >
+        onLongPress={() => (selected ? removeAlbum(title) : addAlbum(album))}>
         <ImageBackground
           source={{
             uri: asset ? asset.node.image.uri : undefined,
@@ -65,8 +63,7 @@ export const AlbumCard: React.FC<AlbumCardType> = ({
             mediumStyle.thumbnail,
             styles.justifyContent_end,
             isSelected && styles.bg_darkOpacity,
-          ]}
-        >
+          ]}>
           {asset && asset.node.image.playableDuration && (
             <View
               style={[
@@ -75,8 +72,7 @@ export const AlbumCard: React.FC<AlbumCardType> = ({
                 styles.row,
                 styles.justifyContent_between,
                 styles.alignItems_center,
-              ]}
-            >
+              ]}>
               <Icon
                 name="play-circle"
                 size={20}
@@ -85,8 +81,7 @@ export const AlbumCard: React.FC<AlbumCardType> = ({
               />
               <Text
                 numberOfLines={1}
-                style={[styles.font_xsm, styles.color_white, styles.text]}
-              >
+                style={[styles.font_xsm, styles.color_white, styles.text]}>
                 {durationFormat(asset.node.image.playableDuration)}
               </Text>
             </View>
@@ -99,8 +94,7 @@ export const AlbumCard: React.FC<AlbumCardType> = ({
                 selected && {
                   backgroundColor: text,
                 },
-              ]}
-            >
+              ]}>
               {selected && <Icon name="md-checkmark-sharp" color={background} />}
             </View>
           )}
@@ -109,14 +103,12 @@ export const AlbumCard: React.FC<AlbumCardType> = ({
         <View style={[styles.padding_sm]}>
           <ThemeText
             numberOfLines={1}
-            style={[styles.font_md, styles.fontWeight_700]}
-          >
+            style={[styles.font_md, styles.fontWeight_700]}>
             {title}
           </ThemeText>
           <Text
             numberOfLines={1}
-            style={[styles.font_xsm, styles.color_gray, styles.text]}
-          >
+            style={[styles.font_xsm, styles.color_gray, styles.text]}>
             {quantifier(count, 'item')}
           </Text>
         </View>

@@ -4,7 +4,7 @@ import { styles } from '../../../styles';
 import { types } from '../../../helpers';
 
 export interface globalProp extends ViewProps {
-  children: JSX.Element[] | JSX.Element;
+  children: React.ReactNode;
   style?: object | any[];
 }
 export const Screen: React.FC<globalProp> = ({
@@ -25,8 +25,7 @@ export const Section: React.FC<globalProp> = ({
   return (
     <View
       {...rest}
-      style={[styles.paddingHorizontal_sm, styles.marginBottom_md, style || null]}
-    >
+      style={[styles.paddingHorizontal_sm, styles.marginBottom_md, style || null]}>
       {children}
     </View>
   );

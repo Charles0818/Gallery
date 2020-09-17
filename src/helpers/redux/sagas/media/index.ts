@@ -80,10 +80,6 @@ export const deletePhotosAsync = async (photoUris: string[]): Promise<boolean> =
 function* getAssets({ payload }: GetAssetsRequestAction): IterableIterator<any> {
   try {
     const assets: PhotoIdentifiersPage = yield call(getPhotosAsync, payload);
-    console.log(
-      'fileSize',
-      assets.edges.map((asset) => asset.node.image.fileSize),
-    );
     yield put(getAssetsSuccess(assets, payload.groupName));
   } catch (err) {
     console.log('getAssetsErr', err);

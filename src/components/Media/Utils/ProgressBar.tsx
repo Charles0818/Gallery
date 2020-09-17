@@ -25,8 +25,7 @@ export const ProgressBar = memo(({ maxDuration, onChange }: IProgressBar) => {
           styles.alignItems_center,
           styles.justifyContent_between,
           styles.marginBottom_sm,
-        ]}
-      >
+        ]}>
         <Text style={[styles.font_md, styles.fontWeight_700]}>
           {durationElapsed}
         </Text>

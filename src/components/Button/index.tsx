@@ -33,8 +33,7 @@ export const Button: React.FC<IButton> = ({
           delayPressIn={0}
           delayPressOut={0}
           activeOpacity={activeOpacity}
-          {...rest}
-        >
+          {...rest}>
           {children}
         </TouchableOpacity>
       );
@@ -46,16 +45,14 @@ export const Button: React.FC<IButton> = ({
           delayPressOut={0}
           background={TouchableNativeFeedback.Ripple(rippleColor, false)}
           useForeground={TouchableNativeFeedback.canUseNativeForeground()}
-          {...rest}
-        >
+          {...rest}>
           <View
             style={[
               style,
               {
                 overflow: 'hidden',
               },
-            ]}
-          >
+            ]}>
             {children}
           </View>
         </TouchableNativeFeedback>
@@ -89,8 +86,7 @@ export const SwitchButton = ({ isActive, setIsActive }: ISwitchButton) => {
                 backgroundColor: colors.google_green,
                 alignItems: 'flex-end',
               },
-        ]}
-      >
+        ]}>
         <View style={toggleStyle.circleToggle} />
       </View>
     </TouchableNativeFeedback>

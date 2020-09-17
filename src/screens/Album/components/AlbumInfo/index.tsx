@@ -2,7 +2,6 @@ import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
-import { totalmem } from 'os';
 import { Album, PhotoIdentifier } from '@react-native-community/cameraroll';
 import { AppState, formatFileSize, quantifier } from '../../../../helpers';
 import { colors, styles } from '../../../../styles';
@@ -42,8 +41,7 @@ export const AlbumInfo: React.FC<HeaderType> = memo(
           },
           styles.padding_sm,
           styles.marginBottom_sm,
-        ]}
-      >
+        ]}>
         <Section style={[styles.paddingHorizontal_md]}>
           <ThemeText style={[styles.font_xlg, styles.fontWeight_700]}>
             {albumName}

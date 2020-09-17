@@ -56,14 +56,12 @@ export const AssetCard: React.FC<AssetType> = ({
                 uri: image.uri,
               })
         }
-        onLongPress={() => (selected ? removeAsset(image.uri) : addAsset(asset))}
-      >
+        onLongPress={() => (selected ? removeAsset(image.uri) : addAsset(asset))}>
         <ImageBackground
           source={{
             uri: image.uri,
           }}
-          style={[mediaStyle.thumbnail, styles.justifyContent_end]}
-        >
+          style={[mediaStyle.thumbnail, styles.justifyContent_end]}>
           {image.playableDuration && (
             <View
               style={[
@@ -72,8 +70,7 @@ export const AssetCard: React.FC<AssetType> = ({
                 styles.row,
                 styles.justifyContent_between,
                 styles.alignItems_center,
-              ]}
-            >
+              ]}>
               <Icon
                 name="play-circle"
                 color={colors.white}
@@ -81,8 +78,7 @@ export const AssetCard: React.FC<AssetType> = ({
               />
               <Text
                 numberOfLines={1}
-                style={[styles.font_xsm, styles.color_white, styles.text]}
-              >
+                style={[styles.font_xsm, styles.color_white, styles.text]}>
                 {durationFormat(image.playableDuration)}
               </Text>
             </View>

@@ -1,3 +1,5 @@
+import { PhotoIdentifier } from '@react-native-community/cameraroll';
+
 export const formatFileSize = (fileSize: number): string => {
   let sizeString: string = '';
   const sizeKB = 1024;
@@ -35,18 +37,18 @@ export const durationFormat = (num: number): string => {
 
 export const getMonthName = (month: number): string => {
   const monthNames = [
-    'Jan',
-    'Feb',
-    'Mar',
+    'January',
+    'Febuary',
+    'March',
     'April',
     'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
   return monthNames[month];
 };
@@ -54,4 +56,26 @@ export const getMonthName = (month: number): string => {
 export const getWeekDay = (week: number): string => {
   const weekDays = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
   return weekDays[week];
+};
+
+export interface AssetByMonthType {
+  [key: string]: PhotoIdentifier[];
+}
+// let sortObject: AssetByMonthType = {};
+export const sortAssetsByMonth = (
+  assets: PhotoIdentifier[],
+): [string, PhotoIdentifier[]][] => {
+  let sortObject: AssetByMonthType = {};
+  assets.forEach((asset) => {
+    const date = new Date(asset.node.timestamp * 1000);
+    const publishMonthIndex: number = date.getMonth();
+    const publishMonth: string = getMonthName(publishMonthIndex);
+    const publishYear: number = date.getFullYear();
+    const currentYear: number = new Date(Date.now()).getFullYear();
+    const key: string =
+      publishYear === currentYear ? publishMonth : `${publishMonth}  ${publishYear}`;
+    sortObject[key] = sortObject[key] || [];
+    sortObject[key] = [...sortObject[key], asset];
+  });
+  return Object.entries(sortObject);
 };

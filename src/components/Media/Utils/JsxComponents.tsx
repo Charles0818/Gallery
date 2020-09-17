@@ -16,11 +16,11 @@ import { AppState, types } from '../../../helpers';
 const { themeValues } = types;
 type ThemeTextType = TextProps & {
   style?: any[] | TextStyle;
-  children: string;
+  children: React.ReactNode;
 };
 
 type ScreenHeaderThemeType = ViewProps & {
-  style?: any[] | ViewStyle;
+  style?: ViewStyle[];
   children: React.ReactNode;
 };
 export const useTheme = (): types.themeValues => {
@@ -38,11 +38,11 @@ export const useThemeColor = (): string => {
   return color;
 };
 
-export const ThemeText = ({
+export const ThemeText: React.FC<ThemeTextType> = ({
   style,
   children,
   ...rest
-}: ThemeTextType): JSX.Element => {
+}): JSX.Element => {
   const {
     colors: { text },
   } = useAppTheme();
@@ -54,8 +54,7 @@ export const ThemeText = ({
         },
         style,
       ]}
-      {...rest}
-    >
+      {...rest}>
       {children}
     </Text>
   );
@@ -85,8 +84,7 @@ export const ScreenHeaderTheme: React.FC<ScreenHeaderThemeType> = ({
           backgroundColor: card,
         },
         style,
-      ]}
-    >
+      ]}>
       {children}
     </Animated.View>
   );

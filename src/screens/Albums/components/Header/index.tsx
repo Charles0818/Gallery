@@ -31,31 +31,27 @@ const Header: React.FC<HeaderType> = ({
           height: 150,
         },
         styles.padding_sm,
-      ]}
-    >
+      ]}>
       <Section
         style={[
           styles.row,
           styles.alignItems_center,
           styles.justifyContent_between,
           styles.marginTop_sm,
-        ]}
-      >
+        ]}>
         <View
           style={[
             {
               flex: 5,
             },
-          ]}
-        >
+          ]}>
           {!hasSelection ? (
             <View
               style={[
                 styles.row,
                 styles.alignItems_center,
                 styles.justifyContent_between,
-              ]}
-            >
+              ]}>
               <ThemeText style={[styles.font_xlg, styles.fontWeight_700]}>
                 Albums
               </ThemeText>
@@ -74,8 +70,7 @@ const Header: React.FC<HeaderType> = ({
                     color: text,
                   },
                   styles.font_lg,
-                ]}
-              >
+                ]}>
                 {countAssets()}
               </Text>
             </View>
@@ -87,8 +82,7 @@ const Header: React.FC<HeaderType> = ({
               flex: 1,
             },
             styles.alignItems_end,
-          ]}
-        >
+          ]}>
           <Button style={[styles.marginRight_xsm]}>
             <Icon name="ellipsis-v" size={20} color={colors.gray_color} />
           </Button>
